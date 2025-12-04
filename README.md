@@ -1,61 +1,47 @@
-# Go RPC Chat Server and Client
+# Concurrent go chat server
 
-This repository contains a simple, persistent chat application built using Go's built-in Remote Procedure Call (`net/rpc`) package. The client can send messages, fetch chat history, and gracefully handle server shutdowns and restarts.
+## Description
+A real-time multi-client chat application implemented in **Go**.  
+It supports multiple clients connecting to a single server. Clients can send messages that are broadcast to all other clients in real-time.  
 
-## 🚀 Features
+Features include:  
+- Real-time message broadcasting between clients  
+- Join notifications for new users  
+- No self-message echo  
+- Simple command-line interface  
 
-* **Concurrency:** The server handles multiple clients simultaneously using Goroutines (`go rpc.ServeConn(conn)`).
-* **Persistent History:** All messages are stored in a server-side list and returned on every message/history request.
-* **Graceful Shutdown:** Both the client and server handle `Ctrl+C` (SIGINT) for clean exit.
-* **Client Persistence:** The client automatically attempts to reconnect to the server if the connection is lost.
-* **Full-Line Input:** Uses `bufio` to correctly read entire messages, including spaces.
+### This project demonstrates Go concurrency, channels, mutex synchronization, and RPC-based client-server communication.
 
-## 📁 Project Structure
+---
 
-The project is structured into separate modules for clean separation of concerns:
+## Demo
 
-## 🛠️ Setup and Run
+![Chat Demo](assets/demo.png)  
+*Screenshot of the running GoRPC-Chat showing multiple clients connected and messages broadcasted.*
 
-### Prerequisites
+---
 
-You must have Go installed.
 
-### 1. Initialize the Module
+## 💻 How to Run
 
-Navigate to the root directory of the project (`chat-rpc/`) and ensure your Go module is initialized:
+1.  **Ensure Go is Installed:** Make sure you have Go installed on your system.
+2.  **Clone the Repository:**
+    ```bash
+    git clone https://github.com/Mariam687/concurrent-go-chat-server.git
+    cd concurrent-go-chat-server
+    ```
+3.  **Run the Server:** Execute the `server.go` file from the terminal.
 
-```bash
-go mod init chat-rpc
-go mod tidy
-```
+    ```bash
+    go run server.go
+    ```
+4.  **Run the Client:** Execute the `client.go` file from another terminal.
 
-### 2. Start the Server
+    ```bash
+    go run client.go
+    ```
 
-Open your first terminal (or a split terminal in VS Code). The server will listen on port `1234`.
 
-```bash
-go run ./server
-```
 
-### 2. Start the Client
 
-```bash
-go run ./client
-```
-
-## ⚙️ Usage and Commands
-
-| Command/Action | Client Behavior |
-| :--- | :--- |
-| **`hello world`** | Message is sent to the server, stored, and the full history is returned. |
-| **`exit`** | Client gracefully closes its connection and exits the application. |
-| **`Ctrl+C` (Client)** | Client gracefully exits via OS signal handler. |
-| **`Ctrl+C` (Server)** | Server gracefully shuts down the listener. All active clients will automatically attempt to reconnect. |
-| **`/history`** | Requests the full chat history from the server without sending a new message. |
-
-## 📺 Demo
-
-A short demonstration of the client-server interaction and the graceful reconnection feature.
-
-![Demo of the Go RPC Chat Application](assets/chat_demo.gif)
 

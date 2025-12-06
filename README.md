@@ -30,16 +30,17 @@ Features include:
     git clone https://github.com/Mariam687/concurrent-go-chat-server.git
     cd concurrent-go-chat-server
     ```
-3.  **Run the Server:** Execute the `server.go` file from the terminal.
+3.  **Run the Server:** Execute the `server/server.go` file from the terminal.
 
     ```bash
     go run server.go
     ```
-4.  **Run the Client:** Execute the `client.go` file from another terminal.
+4.  **Run the Client:** Execute the `client/client.go` file from another terminal.
 
     ```bash
     go run client.go
     ```
+
 
 
 
